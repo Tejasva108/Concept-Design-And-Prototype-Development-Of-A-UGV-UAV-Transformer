@@ -88,11 +88,3 @@ The prototype was built using **3D-printed and laser-cut acrylic components**, *
 
 ## 📸 Demonstration  
 
-> *(Add images or video links here once available)*  
-
-Example:  
-```markdown
-![UGV Mode](images/ugv_mode.jpg)
-![Transformation](images/transformation.jpg)
-![UAV Mode](images/uav_mode.jpg)
-
