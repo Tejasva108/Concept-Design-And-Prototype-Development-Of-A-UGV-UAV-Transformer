@@ -1,6 +1,7 @@
 # Concept-Design-And-Prototype-Development-Of-A-UGV-UAV-Transformer
+
 # 🚘🛩️ Hybrid Transformable UGV–UAV Robot  
-### A Ground-to-Air Transformable Robot using ESP Controllers and Custom Electronics  
+### A Ground-to-Air Transformable Robot using ESP Controllers, Servo Mechanism, and Custom Electronics  
 
 ---
 
@@ -18,12 +19,12 @@ The prototype was built using **3D-printed and laser-cut acrylic components**, *
 | Subsystem | Description |
 |------------|-------------|
 | **Mechanical Design** | The base structure was adapted from an existing open-source SolidWorks design. Modified for fabrication using **3D printing** and **acrylic sheets**. |
-| **Transformation Mechanism** | The robot’s arms and wheels serve dual purposes — **driving in UGV mode** and **propelling in UAV mode** using **BLDC motors**. |
-| **Electronics & Control** | Custom circuit designed for voltage regulation, motor control, and communication. Integrated **flight controller**, **ESP boards**, and **motor drivers** for mode switching. |
-| **Propulsion** | 6× **BLDC motors** (4 for flight, 2 for drive) controlled using **4-in-1 ESC** and standalone ESCs. |
-| **Communication** | **RC receiver** and **transmitter** used for manual control. ESP modules enabled control logic and data exchange. |
-| **Power System** | Li-Po battery setup with voltage regulators for motor and control circuits. |
-| **Software** | Control logic implemented via microcontrollers (ESP32/ESP8266) and flight controller firmware. |
+| **Transformation Mechanism** | The transformation between UGV and UAV modes is powered by **two servo motors**, which adjust the arm configuration and reorient the BLDC motor mounts for takeoff. |
+| **Electronics & Control** | Custom circuit designed for voltage regulation, motor control, and communication. Integrated **flight controller**, **ESP boards**, **motor drivers**, and **servo motor control** for mode switching. |
+| **Propulsion** | 6× **BLDC motors** (4 for flight, 2 for drive) controlled using a **4-in-1 ESC** and separate ESCs. |
+| **Communication** | **RC receiver** and **transmitter** for manual control. ESP modules handle transformation logic and communication. |
+| **Power System** | Li-Po battery setup with voltage regulators to power flight controller, servos, and drive systems. |
+| **Software** | Control logic implemented on **ESP32/ESP8266** microcontrollers. Flight handled by onboard flight controller firmware. |
 
 ---
 
@@ -31,41 +32,45 @@ The prototype was built using **3D-printed and laser-cut acrylic components**, *
 
 | Component | Specification / Function |
 |------------|---------------------------|
-| **BLDC Motors (×6)** | Drive and lift propulsion |
-| **4-in-1 ESC** | Controls flight motors |
+| **BLDC Motors (×6)** | 4 for flight + 2 for ground drive |
+| **4-in-1 ESC** | Controls quadrotor motors |
 | **Individual ESCs** | Controls ground drive motors |
-| **Flight Controller** | Stabilization and flight control |
-| **ESP Boards** | Mode control and wireless communication |
-| **Voltage Regulators** | Power supply stabilization |
+| **Servo Motors (×2)** | Mechanically transform the robot from UGV to UAV mode |
+| **Flight Controller** | Handles stabilization and flight dynamics |
+| **ESP Boards (ESP32/ESP8266)** | Controls transformation sequence and logic |
+| **Voltage Regulators** | Power management between modules |
 | **RC Receiver + Transmitter** | Manual control interface |
-| **3D Printed Parts + Acrylic Sheets** | Mechanical chassis and body |
+| **3D Printed + Acrylic Frame** | Lightweight mechanical chassis and body |
 
 ---
 
 ## 🧠 Working Principle  
 
 ### 1. UGV Mode  
-- Operates as a wheeled vehicle using ground motors.  
-- Controlled via RC transmitter or ESP logic.  
-- Stable and energy-efficient for ground navigation.  
+- The robot moves as a wheeled vehicle using two BLDC drive motors.  
+- Controlled via RC transmitter or ESP-based wireless input.  
+- Provides stable and power-efficient ground navigation.  
 
 ### 2. Transformation Phase  
-- On command, the robot switches power and control logic to flight mode.  
-- Ground wheels disengage while flight motors spin up.  
+- **Two servo motors** activate and reposition the arms and motor mounts.  
+- The transformation sequence reorients the flight motors from horizontal (drive) to vertical (lift).  
+- Power is gradually switched from ground ESCs to flight ESCs.  
 
 ### 3. UAV Mode  
-- The robot takes off vertically and functions as a quadrotor drone.  
-- Controlled via flight controller and RC inputs.  
+- The robot takes off vertically and operates as a quadrotor drone.  
+- Controlled via the flight controller and RC transmitter.  
+- Enables agile movement and aerial surveillance capabilities.  
 
 ---
 
 ## 🧰 Fabrication Process  
 
-- Extracted and modified **SolidWorks CAD** from an open-source source.  
-- Fabricated the body using **3D printing** and **laser-cut acrylic sheets**.  
-- Assembled electronics on a custom **perfboard circuit**.  
-- Calibrated flight controller and ESCs.  
-- Conducted ground and short flight tests for stability and transformation control.  
+- Modified **SolidWorks CAD** model from an open-source design.  
+- Fabricated parts using **3D printing** and **laser-cut acrylic sheets**.  
+- Mounted servo-based transformation joints on custom brackets.  
+- Designed and soldered a **custom perfboard circuit** for regulators, ESC, and control logic.  
+- Calibrated the **flight controller**, **ESCs**, and **servo positions** for seamless switching.  
+- Conducted ground and flight tests for transformation reliability.  
 
 ---
 
@@ -73,10 +78,11 @@ The prototype was built using **3D-printed and laser-cut acrylic components**, *
 
 | Stage | Key Challenges | Solutions |
 |--------|----------------|-----------|
-| **Mechanical Assembly** | Balancing weight between ground and flight components | Optimized component placement |
-| **Power Management** | Voltage drops during mode switching | Added dedicated regulators and capacitors |
-| **Transformation Stability** | Sudden torque shifts during takeoff | Gradual throttle mapping during transition |
-| **Signal Interference** | Overlap between RC and ESP control | Used frequency separation and shielding |
+| **Mechanical Assembly** | Balancing structural rigidity with weight | Used acrylic supports and optimized motor placement |
+| **Transformation Mechanism** | Servo synchronization and torque limitations | Tuned servo motion range and added delay for stability |
+| **Power Management** | Voltage drops during high-current transitions | Added voltage regulators and capacitors |
+| **Signal Interference** | Overlap between RC and ESP signals | Frequency separation and proper shielding |
+| **Flight Stability** | Sudden center of mass shifts post-transformation | Adjusted PID parameters on flight controller |
 
 ---
 
@@ -87,5 +93,6 @@ The prototype was built using **3D-printed and laser-cut acrylic components**, *
 Example:  
 ```markdown
 ![UGV Mode](images/ugv_mode.jpg)
-![UAV Mode](images/uav_mode.jpg)
 ![Transformation](images/transformation.jpg)
+![UAV Mode](images/uav_mode.jpg)
+
