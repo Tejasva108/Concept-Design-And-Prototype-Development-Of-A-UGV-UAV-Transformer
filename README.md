@@ -88,6 +88,9 @@ The prototype was built using **3D-printed and laser-cut acrylic components**, *
 
 ## 📸 Demonstration
 CAD Model
+![IMG-20251024-WA0003](https://github.com/user-attachments/assets/e8ff7b5c-fe5a-4503-b0a1-5e901a7679d5)
+![IMG-20251024-WA0002](https://github.com/user-attachments/assets/0d69fa6c-f748-469f-8616-5b935c1b27d0)
+
 UGV Demonstration
 https://github.com/user-attachments/assets/1a2138ea-c39f-4258-b10d-042159b90e4d
 
